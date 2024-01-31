@@ -22,6 +22,6 @@ def process_event():
             event_handler.process_event()
             return jsonify({'status': 'success'}), 200
     except ValidationError as e:
-        return jsonify(e.errors()), 400
+        return jsonify({"error":"Invalid event data"}), 400
     except ValueError as e:
-        return jsonify({'error': str(e)}), 400
+        return jsonify({'error': "Invalid event type provided"}), 400
