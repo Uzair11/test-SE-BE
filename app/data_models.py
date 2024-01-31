@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ValidationError, validator
+from pydantic import BaseModel, validator
 from datetime import datetime
 from typing import Optional
 from app.lib.config_handler import cached_read_config
@@ -6,7 +6,7 @@ from app.lib.config_handler import cached_read_config
 
 config = cached_read_config()
 
-event_types = [key for key in config['EVENT_TYPES']]
+event_types = [key for key in config['Event_TYPES']]
 
 
 class Event(BaseModel):
@@ -20,5 +20,12 @@ class Event(BaseModel):
     @validator('event_type')
     def event_type_must_be_valid(cls, v):
         if v not in event_types:
-            raise ValidationError('event_type must be a valid event type')
+            raise ValueError
         return v
+
+    def is_valid(self):
+        try:
+            self.validate()
+        except ValueError:
+            return False
+        return True

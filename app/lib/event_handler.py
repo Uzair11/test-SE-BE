@@ -8,13 +8,13 @@ class EventHandler:
         self.config = cached_read_config()
 
     def process_event(self):
-        match self.event.type:
+        match self.event.event_type:
             case 'app_launch':
                 self.process_app_launch()
             case 'training_program_started':
                 self.process_training_program_started()
             case 'training_program_finished':
-                self.process_training_program_completed()
+                self.process_training_program_finished()
             case 'training_program_cancelled':
                 self.process_training_program_cancelled()
             case _:
@@ -23,19 +23,23 @@ class EventHandler:
     def process_app_launch(self):
         # TODO: Extend this method to process app_launch event.
         # Make a call to /v1/notify
+        config = cached_read_config()
         pass
 
     def process_training_program_started(self):
         # TODO: Extend this method to process training_program_started event.
         # Make a call to /v1/notify
+        config = cached_read_config()
         pass
 
     def process_training_program_finished(self):
         # TODO: Extend this method to process training_program_finished event.
         # Make a call to /v1/notify
+        config = cached_read_config()
         pass
 
     def process_training_program_cancelled(self):
         # TODO: Extend this method to process training_program_cancelled event.
         # Make a call to /v1/notify
+        config = cached_read_config()
         pass

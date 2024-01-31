@@ -1,12 +1,11 @@
 from functools import lru_cache
 import configparser
-
-config = configparser.ConfigParser()
-config.read('../config.ini')
+import os
 
 
-@lru_cache(maxsize=None, ttl=6*60*60)
+@lru_cache(maxsize=None)
 def cached_read_config():
     config = configparser.ConfigParser()
-    config.read('config.ini')
+    config.read(f'{os.getcwd()}/app/config.ini')
     return config
+
